@@ -1,0 +1,27 @@
+#about-us,
+#our-team,
+#faq {
+  padding: 3rem 0;
+}
+
+#our-team {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+h5 {
+	font-weight: 500;
+	color: #535454;
+	line-height: 1.5;
+}
+
+.title--tw{
+	font-size: 1.5em;
+	line-height: 1.5;
+
+}
+
+.contents--tw{
+	font-size: 1.2em;
+	line-height: 1.8;
+}
