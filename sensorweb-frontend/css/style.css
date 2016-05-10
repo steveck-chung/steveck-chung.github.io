@@ -11,13 +11,19 @@ html, body{
   font-size: 12pt;
 }
 
+#page-container {
+  min-height: 100%;
+  position: relative;
+}
+
 nav{
-  border-top: 2px #FFF solid;
+  /*border-top: 2px #FFF solid;*/
   z-index: 1000 !important;
   -webkit-box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
   box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
-  height: 66px !important;
+  height: 75px !important;
+  /*line-height: 75px !important;*/
 }
 
 nav ul a,
@@ -25,20 +31,38 @@ nav .brand-logo {
   color: #FFF;
 }
 
+nav .button-collapse i {
+  line-height: 75px !important;
+}
+
 nav li a{
-  padding: 0 22px 0 22px;
+  font-size: .95em;
+  padding: 0 16px 0 16px;
+  line-height: 75px;
+}
+
+.dropdown-button a {
+  line-height: auto;
 }
 
 #arrow {
+  margin-top: 4px;
   margin-left: 5px;
   font-size: 1.2rem;
 }
 
 .brand-logo {
+  text-indent: 170%;
   font-size: 1.5em !important;
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
   letter-spacing: 1.2px; 
+  overflow: hidden;
+  width: 220px;
+  margin-top: 18px;
+  background-image: url("../images/Logo-title.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .teal {
@@ -55,11 +79,6 @@ nav li a{
   height: 555px;
 }
 
-.tagline {
-  color: #FFF;
-  font-weight: 100;
-  font-size: 1.2em;
-}
 
 #what {
   padding-top: 40px;
@@ -74,7 +93,9 @@ nav li a{
   margin-top: 20px;
 }
 
-
+.projects {
+  padding: 3rem 0;
+}
 
 
 /*Typography*/
@@ -93,19 +114,19 @@ h2 {
 h3, h4 {
   margin-bottom: 40px;
   color: #454545;
-  font-size: 2em;
-  font-weight: 500;
+  font-size: 1.8em;
+  font-weight: 700;
 }
 
 .dropdown-content{
   width: 200px !important;
-  margin-top:65px;
+  margin-top:73px;
   z-index: 1;
 }
 
 .contents{
-  font-size: 1.25em;
-  line-height: 1.6;
+  font-size: 1.1em;
+  line-height: 1.65;
   font-weight: 300;
   color: #757575;
   text-align: left;
@@ -122,30 +143,50 @@ h3, h4 {
 .text-white {
   color: #FFF;
 }
+
 /*Footer*/
 
 .page-footer a{
-  /*font-weight: 300;*/
+  color: #d2d2d2 !important;
+  line-height: 1.8em;
+  font-size: .95em;
 }
 .page-footer li a:hover{
-  opacity: 0.6;
+  color: #fff !important;
 }
 
 .white-text.head {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.1em;
   letter-spacing: 1px;
+  margin: 0px !important;
+  line-height: 1.5em;
 }
 
 .page-footer {
+  height: 265px;
   background-color: #222 !important;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+  .page-footer {
+    height: auto;
+    position: relative;
+  }
 }
 
 .page-footer .container {
-  padding: 40px 0 40px 0;
+  /*padding: 40px 0 40px 0;*/
+  padding-top: 40px;
 }
 
+.container {
+  width: 80% !important;
+}
 
 /*Button*/
 
@@ -160,6 +201,7 @@ h3, h4 {
   -webkit-box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
   box-shadow: 0 1px 0 0 rgba(0,0,0,.15);
+  color: #FFF !important;
 }
 
 .btn-large:hover{
@@ -167,6 +209,33 @@ h3, h4 {
   -moz-box-shadow: 0 3px 5px 0 rgba(0,0,0,.15);
   box-shadow: 0 3px 5px 0 rgba(0,0,0,.15);
 }
+
+.btn-control {
+  margin-top: 2.5px;
+  height: 30px;
+  border-radius: 30px;
+  width: 120px;
+  font-size: 1em;
+  overflow: auto;
+  z-index: 10;
+}
+
+.btn-control i{
+  font-size: 1.2em;
+  line-height: 30px;
+  position: absolute;
+  left: 10px;
+  top: -1px;
+}
+
+.btn-control span{
+  font-size: .8em;
+  line-height: 30px;
+  position: absolute;
+  left: 35px;
+  top: 0px;
+}
+
 /*
 .button-collapse {
   color: #26a69a;
@@ -220,6 +289,27 @@ h3, h4 {
   font-size: inherit;
 }
 
+.login {
+  margin-left: 20px;
+}
+
+.login a {
+  display: inline;
+  margin-top: 16px;
+  border: #FFF 1px solid;
+  padding: 10px 30px !important;
+  border-radius: 40px;
+  text-align: center;
+  transition: all .2s ease;
+}
+
+.login a:hover {
+  background-color: #fff;
+  color: #5CC3B6;
+  transition: all .2s ease;
+}
+
+
 footer.page-footer {
   margin: 0;
 }
@@ -229,6 +319,7 @@ footer.page-footer {
   display: block;
   width: 96px;
   height:26px;
+  margin-bottom: 20px;
 }
 
 #tabzilla a{
@@ -248,4 +339,57 @@ footer.page-footer {
 #tabzilla a:hover{
   background-color: rgba(0,0,0,0);
 }
+
+h3.subtitle {
+  font-size: 1.4em;
+  margin-bottom: 0px;
+}
+
+.modal {
+  padding: .5rem;
+}
+
+.col-right {
+  padding-left: 40px !important;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+@media only screen and (min-width: 993px) {
+#sensorweb-projects {
+  padding-bottom: 265px;
+}
+}
+
+#sensorweb-projects .col {
+  min-height: 490px;
+  position: relative;
+  margin-bottom: 60px;
+}
+#sensorweb-projects .card {
+  margin-bottom: 40px;
+}
+#sensorweb-projects .bottom {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  right: 0;
+  margin: auto;
+}
+
+#google-sign-in-modal {
+  width: 35% !important;
+}
+
+#user-id {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 1px solid #9e9e9e;
+  border-right: 1px solid #9e9e9e;
+  border-top: 1px solid #9e9e9e;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="google-signin-client_id" content="463509681101-3mv6658rkbcq52dst0t3h17desmq6e8l.apps.googleusercontent.com">
+  <meta property="og:url" content="http://sensorweb.io">
+  <meta property="og:site_name" content="SensorWeb">
+  <meta property="og:title" content="Project pm2.5 for SensorWeb">
+  <meta property="og:description" content="Project pm2.5 for SensorWeb">
+  <meta property="og:image" content="http://sensorweb.io/images/promotion_01.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image" content="http://sensorweb.io/images/promotion_02.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="twitter:title" content="SensorWeb">
+  <meta property="twitter:description" content="Project pm2.5 for SensorWeb">
+  <meta property="twitter:image:src" content="http://sensorweb.io/images/promotion_01.png">
+  <meta property="twitter:image:width" content="1200">
+  <meta property="twitter:image:height" content="1200">
+  <title>Project</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/project.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div id="page-container">
+  <!-- Navigation -->
+  <ul id="dropdown" class="dropdown-content">
+    <li><a href="about.html">English Version</a></li>
+    <li class="divider"></li>
+    <li><a href="tw/about.html">中文版</a></li>
+  </ul>
+  <div class="navbar-fixed">
+    <nav class="teal" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">SensorWeb</a>
+
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="projects.html">Projects</a></li>
+          <!-- <li><a href="getting-started.html">Document</a></li> -->
+          <li><a href="http://blog.sensorweb.io">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <!-- Dropdown Trigger -->
+          <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown">EN<i id="arrow" class="material-icons right">arrow_drop_down</i></a></li> -->
+          <!-- <li class="login"><a id="login-btn" href="#google-sign-in-modal" class="modal-trigger">Log In</a></li>          <li class="login"><a id="account-btn" class="hide">My account</a></li> -->
+
+          <!-- <li>
+            <div id="tabzilla">
+              <a href="https://www.mozilla.org/en-US/" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+            </div>
+          </li> -->
+        </ul>
+
+        <!-- Mobile Navigation -->
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <!-- <li><a href="getting-started.html">Document</a></li> -->
+          <li><a href="http://blog.sensorweb.io">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <!-- <li><a href="user-detail.html">Log In</a></li> -->
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      </div>
+    </nav>
+  </div>
+
+  <div id="pm25" class="container projects">
+    <div class="section">
+      <div class="row">
+          <h3 class="center-align">Project PM2.5</h3>
+          <div class="col l6 s12">
+            <p class="contents description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed.
+            </p>
+          </div>
+          <div class="col l6 s12">
+            <p class="project-info contents">Creator: <span class="creator"></span></p>
+            <p class="project-info contents">Contributors: <span class="contributors"></span></p>
+            <p class="project-info contents hide">Last updated: <span class="last-update"></span></p>
+            <p class="project-info contents">Created: <span class="created-date"></span></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="fullscreen projects">
+    <!-- <h3 class="center-align">Sensors Map</h3> -->
+    <div id="map-container">
+      <div id="sensors-location-map"></div>
+        <div id="sensor-data-chart-container" class="hide">
+          <div class="row no-margin">
+          <div id="sensor-information" class="col s12 l3">
+            <h3 class="name"></h3>
+            <p class="description"></p>
+            <p><span>PM2.5: </span><span class="value"></span></p>
+            <p class="info"><span>Air quality is </span><span class="status"></span>.</p>
+            <p class="info"><span>Updated </span><span class="latest-update"></span>.</p>
+            </br>
+            <a id="sensor-details" class="waves-effect waves-light btn-large" style="width: auto; margin-top: 12px">Sensor Details</a>
+          </div>
+          <div id="sensor-chart" class="col s12 l9">
+            <canvas id="sensor-data-chart"></canvas>
+            <button id="chart-close-btn" class="waves-effect waves-light btn teal"><i class="material-icons center">close</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contributor" class="container projects">
+    <div class="section">
+      <div class="row">
+          <div id="contributor-list" class="col s12">
+            <h3 class="center-align">Contributors</h3>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="fullscreen" id="join-project">
+      <div class="container projects">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 l8 offset-l2">
+              <h3 class="center-align">Join as a Contributor</h3>
+              <p class="contents">
+                The Mozilla team believes SensorWeb is a model that can be used to solve diverse problems worldwide. Please let us know if you have  ideas or are experiencing a problem that you believe can be solved by using sensors to monitor an environment and publishing that data for public access.</br></br>
+              </p>
+              <div class="center">
+                <a href="#google-sign-in-modal" class="waves-effect waves-light btn-large modal-trigger hide" style="width: auto;">Join Project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Modal structure -->
+  <div id="google-sign-in-modal" class="modal">
+    <div class="modal-content">
+      <h4>Login to your account</h4>
+      <p>Please give us your preferred ID and sign in with google account</p>
+      <div class="input-field">
+        <input id="user-id" type="text" class="validate" placeholder="User ID">
+        <!-- <label for="user-id">User ID</label> -->
+      </div>
+      <div class="g-signin2 center" data-onsuccess="onSignIn"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l3 s12">
+          <a href="http://mozilla.org" target="_blank"><img class="logo-mozilla" src="images/footer-mozilla-white.png"/></a>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text head">SensorWeb</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/sensor-web" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text head">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://wiki.mozilla.org/SensorWeb" target="_blank">Wiki</a></li>
+            <li><a class="white-text" href="https://wiki.mozilla.org/Connected_Devices/Participation" target="_blank">Participation</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text head">Contact Us</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:sensorweb@mozilla.com" target="_blank">sensorweb@mozilla.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/client.js"></script>
+  <script src="js/lib/purl.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/auth-utils.js"></script>
+  <script src="js/daqi-utils.js"></script>
+  <script src="js/chart-utils.js"></script>
+  <script src="js/project.js"></script>
+  <script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWlJoUn2DS8XUYilLXZE8dxYEXbo6dnaE&signed_in=false&callback=initMap">
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-75308712-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
