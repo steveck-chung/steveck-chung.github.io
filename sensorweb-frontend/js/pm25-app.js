@@ -153,7 +153,12 @@
   }
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    var opts = {
+      timeout: 5000,
+      enableHighAccuracy: true
+    };
+
+    function onSuccess(position) {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -166,9 +171,24 @@
       });
       gMap.setCenter(pos);
       gMapMarker.setIcon('images/location.png');
-    }, function() {
-      console.error('Browser unable to get current location');
-    });
+    }
+
+    function onError() {
+      $('#open-settings').click(function() {
+        //var devicePlatform = device.platform only for android/ios
+        if(typeof cordova.plugins.settings.openSetting != undefined){
+          cordova.plugins.settings.openSetting("location_source", function(){
+            console.log("opened nfc settings")
+          },
+          function(){
+            console.log("failed to open nfc settings")
+          });
+        }
+      });
+      $('#location-modal').openModal();
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, opts);
   } else {
     console.error('Browser doesn\'t support Geolocation');
   }
