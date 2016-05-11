@@ -154,7 +154,6 @@
 
   if (navigator.geolocation) {
     var opts = {
-      timeout: 5000,
       enableHighAccuracy: true
     };
 
@@ -173,22 +172,7 @@
       gMapMarker.setIcon('images/location.png');
     }
 
-    function onError() {
-      $('#open-settings').click(function() {
-        //var devicePlatform = device.platform only for android/ios
-        if(typeof cordova.plugins.settings.openSetting != undefined){
-          cordova.plugins.settings.openSetting("location_source", function(){
-            console.log("opened nfc settings")
-          },
-          function(){
-            console.log("failed to open nfc settings")
-          });
-        }
-      });
-      $('#location-modal').openModal();
-    }
-
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, opts);
+    navigator.geolocation.getCurrentPosition(onSuccess, null, opts);
   } else {
     console.error('Browser doesn\'t support Geolocation');
   }
