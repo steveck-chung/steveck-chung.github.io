@@ -10,24 +10,7 @@
     '<a href="user.html?id=${userId}"><div class="card-image">' +
     '<img src="${picture}"></div></div></a>' +
     '<p id="contributor-name" class="center-align">${name}</p></div>';
-  const DQAI = {
-    low: {
-      iconURL: 'images/green_flag.png',
-      banding: 'Good'
-    },
-    moderate: {
-      iconURL: 'images/yellow_flag.png',
-      banding: 'Moderate'
-    },
-    high: {
-      iconURL: 'images/red_flag.png',
-      banding: 'Unhealthy'
-    },
-    extreme: {
-      iconURL: 'images/purple_flag.png',
-      banding: 'Very Unhealthy'
-    }
-  };
+
 
   // TODO: Maybe we should remove it once server-side rendering is ready?
   // var projectId = $.url().param('id');
@@ -36,11 +19,12 @@
   var gMap;
   var markerMap = new Map();
 
-  var ctx = $('#sensor-data-chart').get(0).getContext('2d');
 
   var dataChartContainer =
     document.getElementById('sensor-data-chart-container');
+  var ctx = $('#sensor-data-chart').get(0).getContext('2d');
   var dataChart;
+
   var chartName = $('#sensor-information .name');
   var chartDescription = $('#sensor-information .description');
   var chartValue = $('#sensor-information .value');
@@ -55,72 +39,41 @@
     }
   });
 
-  function getDQAIStatus(index) {
-    if (index <= 35) {
-      return 'low';
-    } else if (index <= 53) {
-      return 'moderate';
-    } else if (index <= 70) {
-      return 'high';
-    } else {
-      return 'extreme';
-    }
+  function dataConvertion(dataArray) {
+    var config = ChartUtils.getChartConfig();
+    config.data.datasets[0].data = dataArray.map(function(d) {
+      return { x: moment(d.datetime).format(CHART_FORMAT),
+               // FIXME: Remove `pm25Index`.
+               y: d.pm25Index || d.data.pm25 };
+    });
+    return config;
   }
 
-  function dataConvertion(dataArray) {
-    var config = {
-      type: 'line',
-      data: {
-        datasets: [{
-          label: 'PM2.5 value',
-          pointBorderWidth: 0,
-          pointHoverRadius: 4,
-          pointHoverBackgroundColor: 'grey',
-          fill: true,
-          data: dataArray.map(function(d) {
-            return { x: moment(d.datetime).format(CHART_FORMAT),
-                     // FIXME: Remove `pm25Index`.
-                     y: d.pm25Index || d.data.pm25 };
-          })
-        }]
-      },
-      options: {
-        responsive: true,
-        hover: {
-          animationDuration: 0
-        },
-        elements: {
-          line: {
-            borderWidth: 2
-          },
-          point: {
-            radius: 2,
-            borderWidth: 2
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'time',
-            display: true,
-            scaleLabel: {
-              display: true
-            }
-          } ],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'PM2.5 index(μg/m)'
-            },
-            ticks: {
-              beginAtZero: true,
-              suggestedMax: 100
-            }
-          }]
-        }
+  function getGeolocation() {
+    return new Promise(function(resolve, reject) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          // TODO: Maybe we can set a geolocation icon here?
+          // var gMapMarker = new google.maps.Marker({
+          //   position: pos,
+          //   map: gMap,
+          //   zIndex: -1
+          // });
+
+          // gMapMarker.setIcon('images/location.png');
+          resolve(pos);
+        }, function() {
+          reject('Browser unable to get current location');
+        });
+      } else {
+        reject('Browser doesn\'t support Geolocation');
       }
-    };
-    return config;
+    });
   }
 
   function updateMap(sensors) {
@@ -156,9 +109,9 @@
         );
         chartDescription.text(sensor.description);
         chartValue.text(sensor.pm25Index);
-        chartValue.attr('data-status', getDQAIStatus(sensor.pm25Index));
-        chartStatus.text(DQAI[getDQAIStatus(sensor.pm25Index)].banding);
-        chartStatus.attr('data-status', getDQAIStatus(sensor.pm25Index));
+        chartValue.attr('data-status', getDAQIStatus(sensor.pm25Index));
+        chartStatus.text(DAQI[getDAQIStatus(sensor.pm25Index)].banding);
+        chartStatus.attr('data-status', getDAQIStatus(sensor.pm25Index));
         chartLatestUpdate.text(moment(sensor.latestUpdate).fromNow());
         dataChartContainer.classList.remove('hide');
         $('#sensor-details').attr('href','./sensor.html?id=' + sensor._id);
@@ -179,6 +132,14 @@
     });
 
     gMap.setCenter(bound.getCenter());
+    gMap.fitBounds(bound);
+
+    getGeolocation().then(function(pos) {
+      gMap.setCenter(pos);
+      gMap.setZoom(11/* TODO: Refine this part to set correct scale*/);
+    }, function(e) {
+      console.log(e);
+    });
   }
 
   function renderContributorList(contributors) {
@@ -189,7 +150,6 @@
     var mapElement = document.getElementById('sensors-location-map');
 
     gMap = new google.maps.Map(mapElement, {
-      zoom: 11,  // TODO: Find a better way to define the zoom scale
       streetViewControl: false,
       scrollwheel: false
     });

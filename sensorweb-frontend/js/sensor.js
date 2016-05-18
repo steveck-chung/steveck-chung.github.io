@@ -2,24 +2,6 @@
 
 (function(exports){
   const CHART_FORMAT = 'LLL';
-  const DQAI = {
-    low: {
-      iconURL: 'images/green_flag.png',
-      banding: 'Good'
-    },
-    moderate: {
-      iconURL: 'images/yellow_flag.png',
-      banding: 'Moderate'
-    },
-    high: {
-      iconURL: 'images/red_flag.png',
-      banding: 'Unhealthy'
-    },
-    extreme: {
-      iconURL: 'images/purple_flag.png',
-      banding: 'Very Unhealthy'
-    }
-  };
 
   $(document).ready(function(){
     $('.modal-trigger').leanModal();
@@ -39,7 +21,6 @@
 
   // Chart related
   var dataChart;
-  var gradient;
 
   function updateInfo(sensor) {
     var status = getDAQIStatus(sensor.pm25Index);
@@ -51,7 +32,7 @@
           '<p id="info-description">' + sensor.description + '</p>'+
           '<p>PM2.5: <span class="value" id="info-pm25-index" data-status="' +
           status +'">' + sensor.pm25Index + '</span>' +
-          '<p class="info">Air quality is '+ '<span class="status" data-status="'+status+'">'+DQAI[status].banding+'</span>'+'<span> ( <a href="https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=pm25#pollutant" target="_blank">' +
+          '<p class="info">Air quality is '+ '<span class="status" data-status="'+status+'">'+DAQI[status].banding+'</span>'+'<span> ( <a href="https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=pm25#pollutant" target="_blank">' +
           '<a href="http://taqm.epa.gov.tw/taqm/tw/fpmi.htm" target="_blank">Taiwan\'s Practice</a> )</p>' +
           '<p class="info">Last Update: <span id="info-last-update">' + moment(sensor.latestUpdate).format(CHART_FORMAT) + '</span></p>'+
         '</div>'+
@@ -99,67 +80,12 @@
   }
 
   function dataConvertion(dataArray) {
-    var config = {
-      type: 'line',
-      data: {
-        datasets: [{
-          label: "PM2.5 value",
-    			pointBorderWidth: 0,
-          pointBorderColor: "#fff",
-          pointHoverRadius: 5,
-          pointHoverBorderWidth: 0,
-          pointBackgroundColor: "#5cc7B9",
-          pointHoverBackgroundColor: "#1cbcad",
-          backgroundColor: gradient,//"rgba(136,216,205,0.5)",
-          fill: true,
-          data: dataArray.map(function(d) {
-            return { x: moment(d.datetime).format(CHART_FORMAT),
-                     // FIXME: Remove `pm25Index`.
-                     y: d.pm25Index || d.data.pm25 };
-          })
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        hover: {
-          mode: "single",
-          animationDuration: 0,
-        },
-        elements: {
-          line: {
-            borderWidth: .1,
-            borderColor: "#88d8cd"
-          },
-          point: {
-            radius: 0,
-            borderWidth: 0,
-            hitRadius: 10
-          }
-        },
-        scales: {
-          xAxes: [{
-            type: 'time',
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Time'
-            }
-          } ],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'PM2.5 (μg/m)'
-            },
-            ticks: {
-              beginAtZero: true,
-              suggestedMax: 100
-            }
-          }],
-        }
-      }
-    };
+    var config = ChartUtils.getChartConfig();
+    config.data.datasets[0].data = dataArray.map(function(d) {
+      return { x: moment(d.datetime).format(CHART_FORMAT),
+               // FIXME: Remove `pm25Index`.
+               y: d.pm25Index || d.data.pm25 };
+    });
     return config;
   }
 
@@ -203,18 +129,21 @@
     if (dataChart) {
       dataChart.destroy();
     }
-
-    var ctx = $("#sensor-data-chart").get(0).getContext("2d");
-    gradient = ctx.createLinearGradient(0,600,0,0);
-    gradient.addColorStop(1,"#60CC4A");
-    gradient.addColorStop(0,"#5BCEA0");
-    ctx.canvas.height = 400;
+    var ctx = $('#sensor-data-chart').get(0).getContext('2d');
     dataChart = new Chart(ctx, dataConvertion(dataArray));
-    console.log(dataChart);
+    // FIXME: Not sure why the gradient is not applied at first. So we force
+    // it to update after animation.
+    setTimeout(dataChart.update.bind(dataChart), 1000);
   })
   .fail(function(error) {
     console.error(error);
   });
+
+  var widget = document.querySelector('#widget');
+  widget.setAttribute('src', SENSORWEB_URL + 'widget.html?id=' + sensorId);
+  var widgetInput = document.querySelector('#widget-input');
+  widgetInput.setAttribute('value', '<iframe width="125" height="125" src="' + SENSORWEB_URL +
+    'widget.html?id=' + sensorId + '" frameborder="0" scrolling="no"></iframe>');
 
   // XXX: Hack to sync the latest data.
   setInterval(function() {
@@ -241,7 +170,8 @@
         } else if (formattedDate > dataChart.data.datasets[0].data[0].x) {
           dataChart.data.datasets[0].data.unshift({
             x: moment(sensor.latestUpdate).format(CHART_FORMAT),
-            y: sensor.pm25Index
+            // FIXME: Remove `pm25Index`.
+            y: sensor.pm25Index || sensor.data.pm25
           });
           dataChart.update();
         }
