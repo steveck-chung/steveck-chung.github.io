@@ -1,7 +1,8 @@
 #tagline {
 	font-weight: 300;
 	line-height: 1.2;
-	letter-spacing: 1px;
+	letter-spacing: .5px;
+  color: #fff !important;
 }
 
 #index-form {
@@ -41,6 +42,13 @@
 #index-form .waves-button-input {
   height: 100%;
   width:100%;
+}
+
+#background-1{
+  background: url(../images/01_pm25.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 @media only screen and (min-width: 993px) {

@@ -1,13 +1,5 @@
-#about-us,
-#our-team,
-#faq {
-  padding: 3rem 0;
-}
-
-@media only screen and (min-width: 993px) {
-	#our-team {
-	  padding-bottom:265px;
-	}
+#our-team {
+  padding-top: 3rem;
 }
 
 #our-team .card {
@@ -17,7 +9,13 @@
   overflow: hidden;
 }
 
-#our-team .card-name,  #our-team .card-name-title{
+@media only screen and (min-width: 993px) {
+	#contributors {
+	  padding-bottom:265px;
+	}
+}
+
+.card-name, .card-name-title{
   text-align: center;
 }
 

@@ -3,6 +3,7 @@
 (function(exports){
   $(document).ready(function(){
     $('.modal-trigger').leanModal();
+    $('#sensor-data-chart').get(0).height = document.body.clientWidth * 0.6;
   });
 
   const CHART_FORMAT = 'LLL';
@@ -24,8 +25,6 @@
   var chartLatestUpdate = $('#sensor-information .latest-update');
   var navBarTitle = $('#app-navbar h3');
   var backBtn = $('#back-btn');
-
-  $('#sensor-data-chart').get(0).height = document.body.clientWidth * 0.6;
 
   backBtn.click(function () {
     updateNavBar('map');
@@ -50,6 +49,7 @@
           pm25Index: items.yLabel,
           latestUpdate: items.xLabel
         });
+        return 'PM2.5: ' + items.yLabel;
       }
     };
     return config;
@@ -60,7 +60,7 @@
       navBarTitle.text('SensorWeb');
       backBtn[0].classList.add('hide');
     } else if (view === 'detail') {
-      navBarTitle.text('Detail');
+      navBarTitle.text('Sensor Details');
       backBtn[0].classList.remove('hide');
     }
   }

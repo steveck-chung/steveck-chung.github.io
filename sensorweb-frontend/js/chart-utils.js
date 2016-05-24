@@ -27,6 +27,9 @@
         tooltips: {
           mode: 'label'
         },
+        legend: {
+          display: false
+        },
         elements: {
           line: {
             borderWidth: .1,
