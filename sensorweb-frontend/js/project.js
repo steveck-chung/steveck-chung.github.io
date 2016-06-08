@@ -18,8 +18,8 @@
     }, 5000);
   });
 
-  const CHART_FORMAT = 'LLL';
-  const CONTRIBUTOR_MARKUP ='<div class="col s6 m3 l2"><div class="card">' +
+  var CHART_FORMAT = 'LLL';
+  var CONTRIBUTOR_MARKUP ='<div class="col s6 m3 l2"><div class="card">' +
     '<a href="user.html?id=${userId}"><div class="card-image">' +
     '<img src="${picture}"></div></div></a>' +
     '<p id="contributor-name" class="center-align">${name}</p></div>';
@@ -146,7 +146,7 @@
 
     getGeolocation().then(function(pos) {
       gMap.setCenter(pos);
-      gMap.setZoom(11/* TODO: Refine this part to set correct scale*/);
+      gMap.setZoom(16/* TODO: Refine this part to set correct scale*/);
     }, function(e) {
       console.log(e);
     });

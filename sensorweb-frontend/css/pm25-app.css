@@ -41,6 +41,16 @@
   right: 0;
 }
 
+#map-btn > .map-icon {
+  width: 28px;
+  height: 56px;
+  margin-top: 3px;
+  background-image: url("../images/icon_map.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #list-view {
   position: absolute;
   top: 0;
@@ -91,25 +101,7 @@
   color: #1CBCAD;
 }
 
-#sensor-information [data-status="low"],
-#sensor-list [data-status="low"] {
-  color: #60CC4A;
-}
 
-#sensor-information [data-status="moderate"],
-#sensor-list [data-status="moderate"] {
-  color: #F1BE4A;
-}
-
-#sensor-information [data-status="high"],
-#sensor-list [data-status="high"] {
-  color: #FF6360;
-}
-
-#sensor-information [data-status="extreme"],
-#sensor-list [data-status="extreme"] {
-  color: #D95AF9;
-}
 
 
 #sensor-chart {
@@ -176,6 +168,7 @@
 #sensor-list li {
   position: relative;
   border-bottom: 1px solid lightgray;
+  padding-bottom: 0.5rem;
 }
 
 #sensor-list li > * {
@@ -184,8 +177,15 @@
 
 
 #sensor-list .info {
-  width: calc(100% - 10rem);
-  padding-left: 1rem;
+  width: calc(100% - 9rem);
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#sensor-list .name {
+  color: #535353;
+  font-size: 1.2rem;
 }
 
 #sensor-list .name,
@@ -196,15 +196,20 @@
   white-space: nowrap;
 }
 
+#sensor-list .description {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: #8e8e8e;
+}
+
 #sensor-list .description span {
-  vertical-align: super;
   padding: 0 0.5rem 0 0.2rem;
 }
 
 #sensor-list .index {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 30px;
   width: 10rem;
 
   padding: 0.5rem 1rem 0 1rem;
@@ -213,14 +218,17 @@
 
 #sensor-list .index > * {
   display: inline;
+  color: #535353;
 }
 
 #sensor-list .value {
-  font-size: 3rem;
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-right: 4px;
 }
 
 #sensor-list .unit {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 /* Navbar button control */
@@ -237,4 +245,24 @@
 [data-type="list"] #map-btn,
 [data-type="detail"] #back-btn {
   display: block;
+}
+
+#sensor-information [data-status="low"],
+#sensor-list [data-status="low"] {
+  color: #60CC4A;
+}
+
+#sensor-information [data-status="moderate"],
+#sensor-list [data-status="moderate"] {
+  color: #F1BE4A;
+}
+
+#sensor-information [data-status="high"],
+#sensor-list [data-status="high"] {
+  color: #FF6360;
+}
+
+#sensor-information [data-status="extreme"],
+#sensor-list [data-status="extreme"] {
+  color: #D95AF9;
 }
