@@ -132,6 +132,9 @@
         })
         .done(function(dataArray) {
           dataChart = new Chart(ctx, dataConvertion(dataArray));
+          // FIXME: Not sure why the gradient is not applied at first. So we force
+          // it to update after animation.
+          setTimeout(dataChart.update.bind(dataChart), 1000);
         })
         .fail(function(error) {
           console.error(error);
