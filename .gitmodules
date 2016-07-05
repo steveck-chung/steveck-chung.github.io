@@ -1,0 +1,3 @@
+[submodule "sensorweb-fe-staging"]
+	path = sensorweb-fe-staging
+	url = https://github.com/sensor-web/sensorweb-frontend.git
