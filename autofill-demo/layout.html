@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Form Autofill Demo Page</title>
+  <script type="text/javascript" src="base.js"></script>
+</head>
+<body>
+  <h1>Form Autofill Demo Page</h1>
+  <form id="form">
+    <p><label>organization(100): <input type="text" id="organization" name="organization"  autocomplete="organization" style="width: 100px;"></label></p>
+    <p><label>streetAddress(150): <input type="text" id="street-address" name="street-address" autocomplete="street-address" style="width: 150px;"></label></p>
+    <p><label>addressLevel2(200): <input type="text" id="address-level2" name="address-level2" autocomplete="address-level2" style="width: 200px;"></label></p>
+    <p><label>addressLevel1(300): <input type="text" id="address-level1" name="address-level1" autocomplete="address-level1" style="width: 300px;"></label></p>
+    <p><label>postalCode(50): <input type="text" id="postal-code" name="postal-code" autocomplete="postal-code" style="width: 50px;"></label></p>
+    <p><label>country(80): <input type="text" id="country" name="country" autocomplete="country" style="width: 80px;"></label></p>
+    <p><label>tel: <input type="text" id="tel" name="tel" autocomplete="tel"></label></p>
+    <p><label>email: <input type="text" id="email" name="email" autocomplete="email"></label></p>
+    <p><input type="submit"></p>
+    <p><button type="reset">Reset</button></p>
+  </form>
+
+  <p><button id="btn">Add new input</button></p>
+
+  <form>
+    <p><label>username: <input type="text" name="username"></label></p>
+    <p><label>password: <input type="password" name="password"></label></p>
+    <p><input type="submit"></p>
+  </form>
+
+  <script>
+    var btn = document.getElementById('btn');
+    var form = document.getElementById('form');
+    var count = 1;
+
+    btn.onclick = function() {
+      var p = document.createElement('p');
+      p.innerHTML = '<label>new input ' + (count++) + ': <input type="text"></label>';
+      form.appendChild(p);
+    };
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Form Autofill Demo: Basic @autocomplete</title>
+  <link rel="stylesheet" href="css/base.css"/>
+  <script type="text/javascript" src="base.js"></script>
+</head>
+<body>
+  <h1>Form Autofill Demo: Basic @autocomplete</h1>
+
+  <form class="alignedLabels">
+    <label>Name: <input autocomplete="name"></label>
+    <label>Organization: <input autocomplete="organization"></label>
+    <label>Street Address: <input autocomplete="street-address"></label>
+    <label>Address Level 2: <input autocomplete="address-level2"></label>
+    <label>Address Level 1: <input autocomplete="address-level1"></label>
+    <label>Postal Code: <input autocomplete="postal-code"></label>
+    <label>Country (Code): <input autocomplete="country" maxlength="2"></label>
+    <label>Telephone: <input autocomplete="tel"></label>
+    <label>Email: <input autocomplete="email"></label>
+    <p>
+      <input type="submit" value="Submit">
+      <button type="reset">Reset</button>
+    </p>
+  </form>
+</body>
+</html>
